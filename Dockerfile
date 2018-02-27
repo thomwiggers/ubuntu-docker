@@ -15,8 +15,8 @@ RUN apt-get update -qq && \
         /etc/apt/sources.list.d/docker.list && \
     apt-get update -qq && \
     apt-get install -qqy docker-ce && \
-     apt-get remove -qqy \
-        apt-transport-https \
+    # Keep apt-transport-https to not break apt-get update
+    apt-get remove -qqy \
         lsb-release \
         curl && \
     apt-get autoremove -qqy && \
