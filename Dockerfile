@@ -22,5 +22,11 @@ RUN apt-get update -qq && \
     apt-get autoremove -qqy && \
     rm -rf /var/cache/apt/
 
+COPY docker-entrypoint.sh /usr/local/bin/
+COPY modprobe.sh /usr/local/bin/modprobe
+
 # Reset frontend
 ENV DEBIAN_FRONTEND=
+
+ENTRYPOINT ["docker-entrypoint.sh"]
+CMD ["sh"]
