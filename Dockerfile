@@ -2,24 +2,25 @@ FROM ubuntu:16.04
 LABEL description="Ubuntu 16.04 with Docker CE"
 MAINTAINER "Thom Wiggers <thom@thomwiggers.nl>"
 
+# Prevent configuration prompts
 ENV DEBIAN_FRONTEND=noninteractive
 
-RUN apt-get update && \
-    apt-get install -y \
+RUN apt-get update -qq && \
+    apt-get install -qqy \
         apt-transport-https \
-        ca-certificates \
-        curl \
-        software-properties-common && \
+        lsb-release \
+        curl && \
     curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add - && \
-    add-apt-repository \
-       "deb [arch=amd64] https://download.docker.com/linux/ubuntu \
-       $(lsb_release -cs) \
-       stable" \
-    apt-get update && \
-    apt-get install -y docker-ce && \
-    apt-get purge -y \
+    echo "deb https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" > \
+        /etc/apt/sources.list.d/docker.list && \
+    apt-get update -qq && \
+    apt-get install -qqy docker-ce && \
+     apt-get remove -qqy \
         apt-transport-https \
-        ca-certificates \
-        curl \
-        software-properties-common && \
+        lsb-release \
+        curl && \
+    apt-get autoremove -qqy && \
     rm -rf /var/cache/apt/
+
+# Reset frontend
+ENV DEBIAN_FRONTEND=
