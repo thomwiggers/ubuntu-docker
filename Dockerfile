@@ -1,5 +1,5 @@
-FROM ubuntu:17.10
-LABEL description="Ubuntu 17.10 with Docker CE"
+FROM ubuntu:rolling
+LABEL description="Ubuntu:rolling with Docker CE"
 MAINTAINER "Thom Wiggers <thom@thomwiggers.nl>"
 
 # Prevent configuration prompts
