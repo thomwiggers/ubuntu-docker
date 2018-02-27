@@ -3,7 +3,7 @@ LABEL description="Ubuntu 16.04 with Docker CE"
 MAINTAINER "Thom Wiggers <thom@thomwiggers.nl>"
 
 RUN apt-get update && \
-    apt-get install \
+    apt-get install -y \
         apt-transport-https \
         ca-certificates \
         curl \
@@ -14,7 +14,7 @@ RUN apt-get update && \
        $(lsb_release -cs) \
        stable" \
     apt-get update && \
-    apt-get install docker-ce && \
+    apt-get install -y docker-ce && \
     apt-get purge -y \
         apt-transport-https \
         ca-certificates \
