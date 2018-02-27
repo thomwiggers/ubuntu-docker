@@ -1,6 +1,6 @@
-LABEL "Ubuntu 16.04 with Docker CE"
-MAINTAINER "Thom Wiggers <thom@thomwiggers.nl>"
 FROM ubuntu:16.04
+LABEL description="Ubuntu 16.04 with Docker CE"
+MAINTAINER "Thom Wiggers <thom@thomwiggers.nl>"
 
 RUN apt-get update && \
     apt-get install \
